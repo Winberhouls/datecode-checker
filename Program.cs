@@ -33,13 +33,13 @@ class Program
         // Output 
         Console.WriteLine("XML datecode: " + varExt);
 
-        // Step 1: Read the XML file and extract the datecode
+        // Read the XML file and extract the datecode
         string dateCode = varExt;
 
-        // Step 2: Calculate the size of the DLL file
+        // Calculate the size of the DLL file
         long dllSize = new FileInfo(dllPath).Length;
 
-        // Step 3: Connect to the SQLite database and retrieve the corresponding datecode
+        // Connect to the SQLite database and retrieve the corresponding datecode
         string connectionString = $"Data Source={sqlitePath};Version=3;";
         string query = $"SELECT datecode FROM file_sizes WHERE FileSizeInBytes = {dllSize};";
 
@@ -67,17 +67,17 @@ class Program
             Console.WriteLine("Error connecting to the SQLite database: " + ex.Message);
             matched = false;
         }
-
-        // Step 4: Compare datecodes
+        // -------------------- File comparison -------------------------
+        // Compare datecodes
         if (matched)
         {
             if (dllDateCode == dateCode)
             {
-                Console.WriteLine($"Datecodes match. The DLL ({dllPath}) and XML ({ea3xmlPath}) are synchronized.");
+                Console.WriteLine($"Datecodes match!!");
             }
             else
             {
-                Console.WriteLine($"Datecodes do not match. The DLL ({dllPath}) and XML ({ea3xmlPath}) are not synchronized.");
+                Console.WriteLine($"Datecodes do not match. :v.");
                 Console.Write("Do you want to fix it? (yes/no): ");
                 string fix = Console.ReadLine();
                 if (fix.ToLower() == "yes")
@@ -85,11 +85,11 @@ class Program
                     Console.WriteLine("Fixing datecode in XML file.");
                     xmlDoc.SelectSingleNode("//soft/ext").InnerText = dllDateCode;
                     xmlDoc.Save(ea3xmlPath);
-                    Console.WriteLine("Datecode in XML file updated.");
+                    Console.WriteLine($"Datecode in XML file updated, now its {xmlDoc}");
                 }
                 else
                 {
-                    Console.WriteLine("Datecodes are not synchronized. No changes made.");
+                    Console.WriteLine("All Right Then, Keep Your Secrets.");
                 }
             }
         }
