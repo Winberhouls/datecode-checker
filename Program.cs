@@ -10,8 +10,8 @@ class Program
     static void Main(string[] args)
     {
         string currentDirectory = Directory.GetCurrentDirectory();
-        string ea3xmlPath = Path.Combine(currentDirectory, "prop", "ea3-config.xml");
-        string dllPath = Path.Combine(currentDirectory, "modules", "bm2dx.dll");
+        string ea3xmlPath = Path.Combine(currentDirectory, "../prop", "ea3-config.xml");
+        string dllPath = Path.Combine(currentDirectory, "../modules", "bm2dx.dll");
         string sqlitePath = Path.Combine(currentDirectory, "file_sizes.db");
         Console.WriteLine("Current Directory: " + Directory.GetCurrentDirectory());
 

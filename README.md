@@ -8,11 +8,17 @@ A program that compares datecodes from a DLL and an XML located in the `content`
 
 To run this project, you need:
 
-- Visual Studio 2022
+- .NET 6
+- data
+- the .db file
+
+## How to actually run it
+
+Go to releases, download the latest [release](https://github.com/Winberhouls/datecode-checker/releases/tag/Release), unzip it inside your `content` folder, and then run it.
 
 ## How to Build
 
-Simply use Visual Studio 2022 to build the project.
+Use Visual Studio 2022 to build the project.
 
 ## Contributing
 
