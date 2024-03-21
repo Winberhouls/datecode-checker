@@ -8,7 +8,7 @@ A program that compares datecodes from a DLL and an XML located in the `content`
 
 To run this project, you need:
 
-- .NET 6
+- .NET 6 runtimes, you can download it from [here](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
 - data
 - the .db file
 
