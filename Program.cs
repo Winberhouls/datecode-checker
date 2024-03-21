@@ -23,7 +23,8 @@ class Program
         }
 
         // Load XML file with correct encoding
-        string xmlContent = File.ReadAllText(ea3xmlPath, Encoding.GetEncoding("utf-8"));
+        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+        string xmlContent = File.ReadAllText(ea3xmlPath, Encoding.GetEncoding("shift_jis"));
         XmlDocument xmlDoc = new XmlDocument();
         xmlDoc.LoadXml(xmlContent);
 
@@ -67,6 +68,8 @@ class Program
             Console.WriteLine("Error connecting to the SQLite database: " + ex.Message);
             matched = false;
         }
+
+        Console.WriteLine("DLL datecode: " + dllDateCode);
         // -------------------- File comparison -------------------------
         // Compare datecodes
         if (matched)
@@ -85,7 +88,7 @@ class Program
                     Console.WriteLine("Fixing datecode in XML file.");
                     xmlDoc.SelectSingleNode("//soft/ext").InnerText = dllDateCode;
                     xmlDoc.Save(ea3xmlPath);
-                    Console.WriteLine($"Datecode in XML file updated, now its {xmlDoc}");
+                    Console.WriteLine($"Datecode in XML file updated, now its {dllDateCode}");
                 }
                 else
                 {
